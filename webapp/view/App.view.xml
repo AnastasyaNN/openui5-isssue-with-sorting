@@ -1,0 +1,102 @@
+<mvc:View
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:f="sap.f"
+		xmlns:uitable="sap.ui.table"
+		controllerName="sap.ui.demo.todo.controller.App"
+		displayBlock="true">
+	<App>
+		<Page>
+			<customHeader>
+				<f:ShellBar core:require="{ Helper: 'sap/ui/demo/todo/util/Helper' }" title="{i18n>TITLE}"
+							homeIcon="{:= Helper.resolvePath('./img/logo_ui5.png') }"/>
+			</customHeader>
+			<content>
+				<f:DynamicPage>
+					<f:header>
+						<f:DynamicPageHeader pinnable="false">
+						</f:DynamicPageHeader>
+					</f:header>
+					<f:content>
+						<VBox>
+						<uitable:Table
+								id="todosTable"
+								rows="{vm>/todos}"
+								sort="onSortChanged">
+							<uitable:columns>
+								<uitable:Column
+										name="TITLE"
+										sorted="{= ${vm>/sorter/TITLE} !== null &amp;&amp; ${vm>/sorter/TITLE} !== undefined}"
+										sortOrder="{vm>/sorter/TITLE}"
+										sortProperty="title">
+									<Label text="Title"/>
+									<uitable:template>
+										<Text text="{vm>title}"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column
+										name="CREATOR"
+										sorted="{= ${vm>/sorter/CREATOR} !== null &amp;&amp; ${vm>/sorter/CREATOR} !== undefined}"
+										sortOrder="{vm>/sorter/CREATOR}"
+										sortProperty="creator">
+									<Label text="Creator"/>
+									<uitable:template>
+										<Text text="{vm>creator}"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column
+										width="9em"
+										name="DATE"
+										sorted="{= ${vm>/sorter/DATE} !== null &amp;&amp; ${vm>/sorter/DATE} !== undefined}"
+										sortOrder="{vm>/sorter/DATE}"
+										sortProperty="date">
+									<Label text="Date"/>
+									<uitable:template>
+										<Text text="{
+                         path: 'vm>date',
+                         type: 'sap.ui.model.type.Date',
+                         formatOptions: {
+                             source: {pattern: 'timestamp'},
+                             pattern: 'dd/MM/yyyy HH:mm'
+                         }
+                     }"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column sortProperty="dummy1">
+									<Label text="Dummy1"/>
+									<uitable:template>
+										<Text text="{vm>dummy1}"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column sortProperty="dummy2">
+									<Label text="Dummy2"/>
+									<uitable:template>
+										<Text text="{vm>dummy2}"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column sortProperty="dummy3">
+									<Label text="Dummy3"/>
+									<uitable:template>
+										<Text text="{vm>dummy3}"/>
+									</uitable:template>
+								</uitable:Column>
+								<uitable:Column sortProperty="dummy4">
+									<Label text="Dummy4"/>
+									<uitable:template>
+										<Text text="{vm>dummy4}"/>
+									</uitable:template>
+								</uitable:Column>
+							</uitable:columns>
+						</uitable:Table>
+						</VBox>
+					</f:content>
+				</f:DynamicPage>
+			</content>
+
+			<footer>
+			</footer>
+
+		</Page>
+	</App>
+</mvc:View>
